@@ -1,4 +1,4 @@
-# BD-J Template
+# BD-J Screensaver
 
 Écran de veille dans le style des lecteurs DVD prime.
 
