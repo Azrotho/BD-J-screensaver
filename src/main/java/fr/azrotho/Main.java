@@ -12,11 +12,12 @@ public class Main extends Container implements Xlet {
     private HScene scene;
     private Font font;
     private Image image;
+    private int x = -6000;
 
     public void initXlet(XletContext context) {
         setSize(1280, 720);
         try {
-            image = AssetLoader.loadImage("img/kekw.png");
+            image = AssetLoader.loadImage("img/blurayblue.png");
         } catch (java.io.IOException e) {
             e.printStackTrace();
         }
@@ -28,7 +29,18 @@ public class Main extends Container implements Xlet {
     public void startXlet() {
         setVisible(true);
         scene.setVisible(true);
-        repaint();
+        float milis = 0.0f;
+        long lastTime = System.currentTimeMillis();
+        while(true) {
+            if(milis >= (1.0f / 60.0f)) {
+                milis = 0.0f;
+                x++;
+                repaint();
+                lastTime = System.currentTimeMillis();
+            }
+            milis += (System.currentTimeMillis() - lastTime) / 1000.0f;
+
+        }
     }
 
     public void pauseXlet() {
@@ -48,16 +60,16 @@ public class Main extends Container implements Xlet {
         g.setColor(new Color(0x000000));
         g.fillRect(0, 0, getWidth(), getHeight());
         if (image != null) {
-            int size = 400;
-            int x = (getWidth() - size) / 2;
+            int size = 200;
+            //int x = (getWidth() - size) / 2;
             int y = (getHeight() - size) / 2;
-            g.drawImage(image, x, y, size, size, this);
+            g.drawImage(image, (this.x / 40), y, size, size, this);
         }
         g.setColor(new Color(0xffffff));
         if (font == null) {
             font = new Font(null, Font.PLAIN, 30);
         }
         g.setFont(font);
-        g.drawString("Hello World!!!! :333", 50, 50);
+        g.drawString("Hello World!!!! :333 " + String.valueOf(x), 50, 50);
     }
 }
