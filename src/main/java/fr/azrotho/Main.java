@@ -139,6 +139,5 @@ public class Main extends Container implements Xlet {
             font = new Font(null, Font.PLAIN, 30);
         }
         g.setFont(font);
-        g.drawString("Hello World!!!! :333 " + String.valueOf(x), 50, 50);
     }
 }
